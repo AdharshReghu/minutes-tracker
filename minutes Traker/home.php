@@ -122,7 +122,7 @@
                         </div>
                     </div>
                 </a>
-                <a style="text-decoration:none" href="#">
+                <a style="text-decoration:none" href="search.html">
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Sale badge
