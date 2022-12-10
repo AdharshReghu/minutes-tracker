@@ -1,5 +1,13 @@
 <?php      
     include('connection.php');  
+    session_start();
+    $_SESSION['email'];
+    $email3=$_SESSION['email'];
+    $name=$sql = "select name from login where email = '$email3'"; 
+    $name2=mysqli_query($con,$name);
+    $row = mysqli_fetch_array($name2, MYSQLI_ASSOC);
+
+    
 ?>
 
 
@@ -11,7 +19,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Shop Homepage - Start Bootstrap Template</title>
+        <title>hompeage</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -40,10 +48,9 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit" >
-                            <!--<i class="bi-cart-fill me-1"></i>-->
-                            logout
-                        </button>
+                        
+                            <a style="text-decoration:none" href="logout.php">LOGOUT</a>
+                        
                     </form>
                 </div>
             </div>
@@ -52,7 +59,7 @@
         <header class="bg-dark py-5">
             <div class="container px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Welcome User</h1>
+                    <h1 class="display-4 fw-bolder">Welcome <?php  echo $_SESSION['email'];?></h1>
                     <!--<p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>-->
                 </div>
             </div>

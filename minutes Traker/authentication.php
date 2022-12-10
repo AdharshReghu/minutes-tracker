@@ -1,7 +1,9 @@
 <?php      
     include('connection.php');  
     $emailid = $_POST['email'];  
-    $password = $_POST['password'];  
+    $password = $_POST['password']; 
+    session_start();
+    $_SESSION['email']=$emailid;
       
         //to prevent from mysqli injection  
         $emailid = stripcslashes($emailid);  
