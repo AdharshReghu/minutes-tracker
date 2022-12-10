@@ -1,63 +1,64 @@
-<?php
-	$email=$_POST['email'];
-	$name=$_POST['name'];
-	$password=['password'];
-	$errors = array();
-	include('connection.php');
-	if (isset($_POST['register']))
-{
-  $email = mysqli_real_escape_string($con, $_POST['email']);
-  $name = mysqli_real_escape_string($con, $_POST['name']);
-  $password = mysqli_real_escape_string($con, $_POST['password']);
+<?php 
+session_start(); 
+include "connection.php";
 
-  if (empty($name)) 
-  { 
-    array_push($errors, "Username is required"); 
-  }
-  if (empty($password)) 
-  { 
-    array_push($errors, "password is required"); 
-  }
-  if (empty($email)) 
-  { 
-    array_push($errors, "Email is required"); 
-  }
-  if (filter_var($email, FILTER_VALIDATE_EMAIL)) 
-  {
-  }
-  else 
-  {
-    array_push($errors, "email is not a valid email address"); 
-  }
-  $user_check_query1 = "SELECT * FROM login";
-  $result1 = mysqli_query($con, $user_check_query1);
-  //The mysqli_fetch_assoc() function fetches a result row as an associative array.
-  $user1 = mysqli_fetch_assoc($result1);
+if (isset($_POST['name']) && isset($_POST['password'])
+    && isset($_POST['email'])) {
 
-  if(!($user1))
-  {
-  $user_check_query = "SELECT * FROM login WHERE name='$name' and email='$email' LIMIT 1";
-  $result = mysqli_query($con, $user_check_query);
-  //The mysqli_fetch_assoc() function fetches a result row as an associative array.
-  $user = mysqli_fetch_assoc($result);
-  if ($user)
-  { 
-    if ($user['name'] === $name) 
-    {
-      array_push($errors, "Username already exists");
-    }
-    if ($user['email'] === $email) 
-    {
-      array_push($errors, "email Id already exists");
-    }
-  }
-  if (count($errors) == 0) 
-  {
-    $query = "INSERT INTO admin (email,name,password) 
-          VALUES('$email', '$name', '$password')";
-    mysqli_query($con, $query);
-    header('location: index.html');
-  }
-    }
+	function validate($data){
+       $data = trim($data);
+	   $data = stripslashes($data);
+	   $data = htmlspecialchars($data);
+	   return $data;
+	}
+
+	$name = validate($_POST['name']);
+	$password = validate($_POST['password']);
+
+	$email = validate($_POST['email']);
+
+	$user_data = 'email='. $email. '&name='. $name;
+
+
+	if (empty($email)) {
+		header("Location: register.html?error=email is required&$user_data");
+	    exit();
+	}else if(empty($password)){
+        header("Location: register.html?error=Password is required&$user_data");
+	    exit();
+	}
+
+	else if(empty($name)){
+        header("Location: register.html?error=Name is required&$user_data");
+	    exit();
+	}
+
+
+	else{
+
+		// hashing the password
+
+
+	    $sql = "SELECT * FROM login WHERE email='$email' ";
+		$result = mysqli_query($con, $sql);
+
+		if (mysqli_num_rows($result) > 0) {
+			header("Location: register.html?error=The email already exist&$user_data");
+	        exit();
+		}else {
+           $sql2 = "INSERT INTO login(email, password, name) VALUES('$email', '$password', '$name')";
+           $result2 = mysqli_query($con, $sql2);
+           if ($result2) {
+           	 header("Location: index.html?success=Your account has been created successfully");
+	         exit();
+           }else {
+	           	header("Location: register.html?error=unknown error occurred&$user_data");
+		        exit();
+           }
+		}
+	}
+	
+}else{
+	header("Location: register.html");
+	exit();
 }
-?>

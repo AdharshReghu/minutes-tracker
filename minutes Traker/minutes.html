@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>5K & 10K Registration Form</title>
+    <title>Minute Entry</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <style>
@@ -37,12 +37,13 @@
       padding: 20px;
       border-radius: 6px;
       background: #fff;
-      box-shadow: 0 0 8px  #cc7a00; 
+      box-shadow: 0 0 8px  grey; 
       }
       .banner {
       position: relative;
-      height: 300px;
-      background-image: url("/uploads/media/default/0001/02/234656e7acbca4625305dd37e7344af8eff32383.jpeg");  
+      height: 100px;
+      background-image: url("/uploads/media/default/0001/02/234656e7acbca4625305dd37e7344af8eff32383.jpeg"); 
+      width: auto; 
       background-size: cover;
       display: flex;
       justify-content: center;
@@ -73,12 +74,12 @@
       padding: 5px;
       }
       .item:hover p, .item:hover i, .question:hover p, .question label:hover, input:hover::placeholder {
-      color: #cc7a00;
+      color: grey;
       }
       .item input:hover, .item select:hover, .item textarea:hover {
       border: 1px solid transparent;
-      box-shadow: 0 0 3px 0 #cc7a00;
-      color: #cc7a00;
+      box-shadow: 0 0 3px 0 grey;
+      color: grey;
       }
       .item {
       position: relative;
@@ -93,7 +94,7 @@
       .item i, input[type="date"]::-webkit-calendar-picker-indicator {
       position: absolute;
       font-size: 20px;
-      color: #cc7a00;
+      color: grey;
       }
       .item i {
       right: 1%;
@@ -131,7 +132,7 @@
       border: 2px solid #ccc;
       }
       input[type=radio]:checked + label:before, label.radio:hover:before {
-      border: 2px solid #cc7a00;
+      border: 2px solid grey;
       }
       label.radio:after {
       content: "";
@@ -140,7 +141,7 @@
       left: 5px;
       width: 8px;
       height: 4px;
-      border: 3px solid #cc7a00;
+      border: 3px solid grey;
       border-top: none;
       border-right: none;
       transform: rotate(-45deg);
@@ -158,13 +159,13 @@
       padding: 10px;
       border: none;
       border-radius: 5px; 
-      background: #cc7a00;
+      background: green;
       font-size: 16px;
       color: #fff;
       cursor: pointer;
       }
       button:hover {
-      background: #ff9800;
+      background: grey;
       }
       @media (min-width: 568px) {
       .name-item, .city-item {
@@ -183,8 +184,11 @@
       }
       }
       .h-100 {
-        font-size: 100px;
-        color:grey;
+        font-size: calc(1.475rem + 2.7vw);
+        font-weight: 300;
+        line-height: 1.2;
+        color:black;
+        font-weight: bolder;
       }
       .imp {
         color: red;
@@ -195,7 +199,6 @@
     <div class="testbox">
       <form action="/">
         <div class="banner">
-            <img src="greyb.png" alt="...">
             <h1 class="h-100">Enter Minute Details</h1>
         </div>
         <div class="item">
